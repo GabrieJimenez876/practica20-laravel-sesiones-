@@ -13,12 +13,17 @@ class CheckRole
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
-    {
-        if (auth()->check() && auth()->user()->role === $role) {
-            return $next($request);
-        }
+    public function handle(Request $request, Closure $next, string $role) 
 
-        return redirect('/dashboard')->with('error', 'Acceso no autorizado.');
-    }
-}
+{ 
+
+    if (auth()->check() && auth()->user()->role === $role) { 
+
+        return $next($request); 
+
+    } 
+
+    return redirect('/dashboard')->with('error', 'Acceso no autorizado.'); 
+
+} 
+};
