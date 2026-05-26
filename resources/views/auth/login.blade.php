@@ -1,4 +1,18 @@
 <x-guest-layout>
+    <div class="card-header text-center bg-primary text-white p-4 rounded-md mb-6">
+        <h4>Sistema de Gestión - Práctica N°20</h4>
+        <small>Jimenez Tarqui Gabriel Isaac</small>
+    </div>
+
+    @auth
+        <div class="mb-4 text-right">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+            </form>
+        </div>
+    @endauth
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
