@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="mb-6 rounded-xl border border-blue-200 bg-blue-600 p-5 text-center text-white">
+        <h4 class="text-xl font-semibold">Sistema de Gestión - Práctica N°20</h4>
+        <p class="mt-1 text-sm opacity-90">Jimenez Tarqui Gabriel Isaac</p>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
