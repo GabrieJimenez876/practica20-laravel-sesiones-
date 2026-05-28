@@ -30,13 +30,14 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock package.json package-lock.json ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
-    && npm ci \
-    && npm run build
+RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --prefer-dist \
+    && npm ci
 
 COPY . ./
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+RUN composer run-script post-autoload-dump \
+    && npm run build \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/apache2.conf \
     && a2enmod rewrite
