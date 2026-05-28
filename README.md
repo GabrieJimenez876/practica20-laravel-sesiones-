@@ -4,84 +4,53 @@
 
 ## Descripción
 
-Sistema de gestión de usuarios desarrollado en Laravel con autenticación y control de acceso basado en roles. Incluye funcionalidades para administradores y usuarios regulares.
+Aplicación Laravel con autenticación y roles. Admin puede gestionar usuarios; usuarios regulares pueden ver dashboard y perfil.
 
----
+## Requisitos
 
-## Tabla de Contenidos
+- PHP 8.2+
+- Composer
+- Node.js y npm
+- MySQL/MariaDB
+- Git
 
-1. [Requisitos Previos](#requisitos-previos)
-2. [Instalación Local](#instalación-local)
-3. [Configuración de la Base de Datos](#configuración-de-la-base-de-datos)
-4. [Ejecución Local](#ejecución-local)
-5. [Usuarios de Prueba](#usuarios-de-prueba)
-6. [Cómo Registrarse](#cómo-registrarse)
-7. [Cómo Entrar al Sistema](#cómo-entrar-al-sistema)
-8. [Funcionalidades por Rol](#funcionalidades-por-rol)
-9. [Navegación de la Aplicación](#navegación-de-la-aplicación)
+## Instalación local
 
----
-
-## Requisitos Previos
-
-Antes de comenzar, asegúrate de tener instalado:
-
-- **PHP 8.2+** (incluido en XAMPP o similar)
-- **Composer** para gestionar dependencias de PHP
-- **Node.js y npm** para compilar recursos frontend
-- **MySQL/MariaDB** para la base de datos
-- **Git** para clonar el repositorio
-
----
-
-## Instalación Local
-
-### 1. Clonar el Repositorio
+1. Clona el repositorio:
 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd practica20-laravel-sesiones-
 ```
 
-### 2. Instalar Dependencias de PHP
+2. Instala dependencias:
 
 ```bash
 composer install
-```
-
-### 3. Instalar Dependencias de Node.js
-
-```bash
 npm install
 ```
 
-### 4. Compilar Recursos Frontend
+3. Crea el archivo `.env`:
 
-```bash
-npm run build
-```
-
----
-
-## Configuración de la Base de Datos
-
-### 1. Crear archivo `.env`
-
-Copia el archivo `.env.example` y configúralo:
+- Linux/Mac/Git Bash:
 
 ```bash
 cp .env.example .env
 ```
 
-### 2. Generar Clave de Aplicación
+- PowerShell:
+
+```powershell
+copy .env.example .env
+```
+
+4. Genera la clave de aplicación:
 
 ```bash
 php artisan key:generate
 ```
 
-### 3. Configurar Credenciales de Base de Datos
-
-Edita el archivo `.env` y configura:
+5. Ajusta `.env` si es necesario:
 
 ```env
 DB_CONNECTION=mysql
@@ -92,132 +61,55 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 4. Crear la Base de Datos
-
-En phpMyAdmin o CLI:
+6. Crea la base de datos y ejecuta migraciones:
 
 ```sql
 CREATE DATABASE practica20_db;
 ```
 
-### 5. Ejecutar Migraciones y Seeders
-
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-Esto creará las tablas y poblará la base de datos con 5 usuarios de prueba.
+7. Compila los recursos frontend:
 
----
+```bash
+npm run build
+```
 
-## Ejecución Local
-
-### Iniciar el Servidor Laravel
+## Ejecutar local
 
 ```bash
 php artisan serve
 ```
 
-La aplicación estará disponible en: **http://localhost:8000**
+Abre: http://localhost:8000
 
----
+## Usuarios de prueba
 
-## Usuarios de Prueba
+- Admin: gabriel@example.com / Gabriel123*
+- Admin: omarqm@example.com / Omar411*
+- Usuario: maria@example.com / Maria123*
+- Usuario: carlos@example.com / Carlos123*
+- Usuario: ana@example.com / Ana123*
 
-| Usuario | Email | Contraseña | Rol |
-|---------|-------|-----------|-----|
-| Omar Q M | omarqm@example.com | Omar411* | Admin |
-| Gabriel Jimenez | gabriel@example.com | Gabriel123* | Admin |
-| Maria Lopez | maria@example.com | Maria123* | Usuario |
-| Carlos Perez | carlos@example.com | Carlos123* | Usuario |
-| Ana Gutierrez | ana@example.com | Ana123* | Usuario |
+## Qué funciona
 
----
+- Registro y login
+- Roles `admin` y `user`
+- Dashboard
+- Perfil
+- CRUD de usuarios para administradores
+- Cierre de sesión
 
-## Cómo Registrarse
+## Notas rápidas
 
-1. Accede a la página principal: **http://localhost:8000**
-2. Haz clic en el enlace **"Registrarse"** (si está disponible)
-3. Completa el formulario con:
-   - Nombre completo
-   - Correo electrónico
-   - Contraseña (mínimo 8 caracteres)
-4. Haz clic en **"Registrarse"**
-5. Los nuevos usuarios se registran automáticamente con rol **"usuario"**
-
-> **Nota:** Para pruebas rápidas, usa directamente los usuarios de prueba listados arriba.
-
----
-
-## Cómo Entrar al Sistema
-
-1. Accede a: **http://localhost:8000/login**
-2. Ingresa tu correo electrónico
-3. Ingresa tu contraseña
-4. Haz clic en **"Iniciar Sesión"**
-5. Si es tu primer acceso, marca la opción **"Recuérdame"** (opcional)
-6. Serás redirigido al **Dashboard** automáticamente
-
----
-
-## Funcionalidades por Rol
-
-### Rol: Administrador
-
-Los administradores tienen acceso completo al sistema:
-
-- ✅ Ver Dashboard
-- ✅ Ver Mi Perfil
-- ✅ Acceder al **Panel de Administración**
-- ✅ Gestionar usuarios (listar, crear, editar, eliminar)
-- ✅ Cerrar sesión
-
-### Rol: Usuario Regular
-
-Los usuarios regulares tienen acceso limitado:
-
-- ✅ Ver Dashboard
-- ✅ Ver Mi Perfil
-- ✅ Cerrar sesión
-- ❌ No pueden acceder al Panel de Administración
-
----
-
-## Navegación de la Aplicación
-
-### 📍 Página de Inicio
-
-**URL:** http://localhost:8000
-
-- Página de bienvenida para usuarios no autenticados
-- Enlaces para **Iniciar Sesión** o **Registrarse**
-
-### 🔐 Iniciar Sesión
-
-**URL:** http://localhost:8000/login
-
-- Formulario para ingresar con correo y contraseña
-- Opción de recordarme
-- Enlace para recuperar contraseña
-
-### 📊 Dashboard
-
-**URL:** http://localhost:8000/dashboard
-
-- Panel principal después de iniciar sesión
-- Acceso a **Mi Perfil**
-- Botón de **Panel de Administración** (solo administradores)
-- Información del usuario autenticado
-
-### 👤 Mi Perfil
-
-**URL:** http://localhost:8000/profile
-
-- Ver información personal:
-  - Nombre
-  - Correo electrónico
-  - Rol asignado
-- Botón para **Cerrar Sesión**
+- Registro: `/register`
+- Login: `/login`
+- Dashboard: `/dashboard`
+- Perfil: `/profile`
+- Panel admin: `/admin/users` (solo admin)
+- Logout: `/logout`
 
 ### 👥 Panel de Administración (Solo Administradores)
 
