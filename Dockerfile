@@ -29,12 +29,17 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 
 WORKDIR /var/www/html
 
+# Paso 1: Copiar solo los archivos de dependencias e instalar sin scripts
 COPY composer.json composer.lock package.json package-lock.json ./
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
+RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --prefer-dist \
     && npm ci \
     && npm run build
 
+# Paso 2: Copiar toda la aplicación
 COPY . ./
+
+# Paso 3: Ejecutar los scripts de composer ahora que artisan existe
+RUN composer dump-autoload --no-dev --optimize
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf \
