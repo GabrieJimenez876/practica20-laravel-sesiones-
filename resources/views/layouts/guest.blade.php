@@ -9,13 +9,13 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-slate-900 antialiased bg-slate-50">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center px-4 py-10 sm:px-6 lg:px-8">
+    <body class="font-sans text-slate-100 antialiased bg-slate-950">
+        <div class="min-h-screen flex flex-col justify-center items-center px-4 py-10 sm:px-6 lg:px-8">
             <div class="w-full sm:max-w-md">
                 <div class="flex justify-center mb-6">
-                    <x-application-logo class="w-20 h-20 text-red-600" />
+                    <x-application-logo class="w-20 h-20 text-slate-100" />
                 </div>
-                <div class="rounded-3xl bg-white px-6 py-8 shadow-xl ring-1 ring-slate-200 sm:px-10">
+                <div class="rounded-[2rem] border border-slate-800 bg-slate-900/95 px-6 py-8 shadow-2xl shadow-black/30 ring-1 ring-slate-700/60 sm:px-10">
                     {{ $slot }}
                 </div>
             </div>

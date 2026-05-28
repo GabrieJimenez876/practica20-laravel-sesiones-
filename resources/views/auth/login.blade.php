@@ -14,36 +14,36 @@
     @endauth
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-6" :status="session('status')" />
+    <x-auth-session-status class="mb-6 rounded-3xl bg-emerald-950/90 px-4 py-4 text-sm text-emerald-200 ring-1 ring-emerald-800" :status="session('status')" />
 
-    <div class="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-200/70">
+    <div class="rounded-3xl bg-slate-900/95 p-8 shadow-2xl shadow-black/30 ring-1 ring-slate-700">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="space-y-5">
                 <div>
-                    <x-input-label for="email" :value="__('Email')" class="text-sm font-medium text-slate-700" />
-                    <x-text-input id="email" class="mt-2 block w-full rounded-2xl border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-slate-900 focus:ring-2 focus:ring-slate-200" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
+                    <x-input-label for="email" :value="__('Email')" class="text-sm font-medium text-slate-100" />
+                    <x-text-input id="email" class="mt-2 block w-full rounded-2xl border-slate-700 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-700" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-400" />
                 </div>
 
                 <div>
-                    <x-input-label for="password" :value="__('Password')" class="text-sm font-medium text-slate-700" />
-                    <x-text-input id="password" class="mt-2 block w-full rounded-2xl border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-slate-900 focus:ring-2 focus:ring-slate-200"
+                    <x-input-label for="password" :value="__('Password')" class="text-sm font-medium text-slate-100" />
+                    <x-text-input id="password" class="mt-2 block w-full rounded-2xl border-slate-700 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
                         type="password"
                         name="password"
                         required autocomplete="current-password" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-600" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-400" />
                 </div>
 
                 <div class="flex items-center justify-between gap-4">
-                    <label for="remember_me" class="inline-flex items-center gap-2 text-sm text-slate-600">
-                        <input id="remember_me" type="checkbox" class="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900" name="remember">
+                    <label for="remember_me" class="inline-flex items-center gap-2 text-sm text-slate-300">
+                        <input id="remember_me" type="checkbox" class="h-4 w-4 rounded border-slate-600 bg-slate-950/90 text-slate-100 focus:ring-slate-700" name="remember">
                         {{ __('Remember me') }}
                     </label>
 
                     @if (Route::has('password.request'))
-                        <a class="text-sm font-medium text-slate-700 transition hover:text-slate-900" href="{{ route('password.request') }}">
+                        <a class="text-sm font-medium text-slate-300 transition hover:text-slate-100" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                     @endif
